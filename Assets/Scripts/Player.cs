@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private CharacterController character;
     private Vector3 direction;
@@ -37,7 +37,12 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         character.Move(direction * Time.deltaTime);
+    }
 
-        
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Collision")){
+           GameManager.Instance.GameOver();
+        }
     }
 }
